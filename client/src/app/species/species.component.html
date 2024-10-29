@@ -1,0 +1,77 @@
+@if (species) {
+  <div class="container py-5">
+    <div class="shadow py-3">
+      <h4 class="text-center">Species Details</h4>
+        <div class="m-3 d-flex">
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Name</div>
+              <div class="card-body text-primary">
+                <p class="card-text">{{ species.name }}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary m-2 w-75">
+              <div class="card-header  bg-secondary text-light">classification</div>
+              <div class="card-body text-primary">
+                <p class="card-text">{{species.classification}}</p>
+              </div>
+            </div>
+        </div>
+            
+        <div class="d-flex m-3 ">
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Mass</div>
+              <div class="card-body text-">
+                <p class="card-text">{{species.designation}}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary  m-2 w-25">
+              <div class="card-header bg-secondary text-light">Hair Color</div>
+              <div class="card-body text-secondary">
+                <p class="card-text">{{species.hair_colors}}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Skin Color</div>
+              <div class="card-body text-secondary">
+                <p class="card-text">{{species.skin_colors}}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Eye Color</div>
+              <div class="card-body text-secondary">
+                <p class="card-text">{{species.eye_colors}}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Average Lifespan</div>
+              <div class="card-body text-secondary">
+                <p class="card-text">{{species.average_lifespan}}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Language</div>
+              <div class="card-body text-secondary">
+                <p class="card-text">{{species.language}}</p>
+              </div>
+            </div>
+
+            <div class="card border-secondary m-2 w-25">
+              <div class="card-header bg-secondary text-light">Homeworld</div>
+              <div class="card-body text-secondary">
+                <p class="card-text">{{species.homeworld}}</p>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+}
+
+@else {
+  <p>No Data!</p>
+}
