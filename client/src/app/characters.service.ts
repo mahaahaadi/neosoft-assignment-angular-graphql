@@ -18,6 +18,7 @@ export interface CharacterDetail extends Character {
   description:string
 }
 
+
 export interface CharactersResult {
   count: number;
   characters: Character[];
@@ -109,4 +110,36 @@ export class CharactersService {
     const result = await this.findSpeciesQuery.refetch({ name });
     return result.data.species;
   }
+
+  async deleteCharacter(name: string): Promise<string | undefined> {
+    const result = await this.apollo
+      .mutate<{ deleteCharacter: string }>({
+        mutation: gql`
+          mutation DeleteCharacter($name: String!) {
+            deleteCharacter(name: $name)
+          }
+        `,
+        variables: { name },
+      })
+      .toPromise();
+  
+    // Safely handle the result using optional chaining and provide a fallback message if undefined
+    return result?.data?.deleteCharacter ?? 'No response from server';
+  }
+  
+
+  //  async deleteCharacter(name: string): Promise<string | undefined> {
+  //   const result = await this.apollo
+  //     .mutate({
+  //       mutation: gql`
+  //         mutation DeleteCharacter($name: String!) {
+  //           deleteCharacter(name: $name)
+  //         }
+  //       `,
+  //       variables: { name },
+  //     })
+  //     .toPromise();
+
+  //   return result.data.deleteCharacter;
+  // }
 }
