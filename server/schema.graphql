@@ -8,7 +8,8 @@ type CharactersResult {
   count: Int
   characters: [Character]
 }
-
+# 
+# 
 type Character {
   id: String
   name: String
