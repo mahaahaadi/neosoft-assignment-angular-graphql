@@ -10,6 +10,7 @@ type CharactersResult {
 }
 
 type Character {
+  id: String
   name: String
   height: Float
   mass: String
@@ -34,4 +35,9 @@ type Species {
   average_lifespan: String
   language: String
   homeworld: String
+}
+
+# CURD OPERATION
+type Mutation {
+  deleteCharacter(name: String!): String
 }
