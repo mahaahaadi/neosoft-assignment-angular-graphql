@@ -1,25 +1,50 @@
-<div class="browse">
-    <h1>Browse Characters</h1>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Homeworld</th>
-        <th>Species</th>
-      </tr>
-      @for (character of characters; track $index) {
-      <tr>
-        <td><a class="text-decoration-none" [routerLink]="['/character']" [queryParams]="{name: character.name}">{{character.name}}</a></td>
-        <td>{{character.homeworld}}</td>
-        <td><a class="text-decoration-none" [routerLink]="['/species']" [queryParams]="{name: character.species}">{{character.species}}</a></td>
-      </tr>
-    }
-    </table>
-    <div class="pager">
-      @if (showPrevious()) {  
-        <button class="btn btn-primary prev" (click)="onPrevious()"> prev </button>
+<div class="browse container my-5">
+  <div class="table-responsive">
+      <table class="table table-hover table-striped align-middle ">
+          <thead class="table-dark">
+              <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Homeworld</th>
+                  <th scope="col">Species</th>
+              </tr>
+          </thead>
+          <tbody>
+              @for (character of characters(); track $index) {
+              <tr>
+                  <td  [routerLink]="['/character']"
+                  [queryParams]="{name: character.name}" class="cursor-pointer">
+                      <a 
+                          class="text-decoration-none text-primary fw-bold">
+                          {{character.name}}
+                      </a>
+                  </td>
+                  <td>{{character.homeworld}}</td>
+                  <td  [routerLink]="['/species']"
+                  [queryParams]="{name: character.species}" class="cursor-pointer">
+                      <a 
+                          class="text-decoration-none ">
+                          {{character.species}}
+                      </a>
+                  </td>
+              </tr>
+              }
+              @empty {
+                <div class="text-center">Empty list of users</div>
+              }
+          </tbody>
+      </table>
+  </div>
+
+  <div class="pager d-flex justify-content-between mt-4">
+      @if (showPrevious()) {
+          <button class="btn btn-outline-primary prev" (click)="onPrevious()">
+              &larr; Previous
+          </button>
       }
       @if (showNext()) {
-        <button class="btn btn-primary next" (click)="onNext()"> next </button>
+          <button class="btn btn-outline-primary next ms-auto" (click)="onNext()">
+              Next &rarr;
+          </button>
       }
-    </div>
   </div>
+</div>

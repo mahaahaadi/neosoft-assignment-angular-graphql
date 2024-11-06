@@ -11,5 +11,4 @@ import { NavbarComponent } from "./navbar/navbar.component";
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'test-ang';
 }

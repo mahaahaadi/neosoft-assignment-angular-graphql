@@ -6,11 +6,16 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), provideHttpClient(), 
+    provideRouter(routes), 
+    provideHttpClient(),
+     
     provideApollo(() => {
     const httpLink = inject(HttpLink);
 
@@ -20,6 +25,10 @@ export const appConfig: ApplicationConfig = {
       }),
       cache: new InMemoryCache(),
     };
-  })
+  }),
+  provideAnimations(),
+  provideToastr()
   ]
 };
+
+

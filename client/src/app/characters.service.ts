@@ -8,6 +8,7 @@ export interface Character {
 }
 
 export interface CharacterDetail extends Character {
+  id: string;
   height: number;
   mass: string;
   hair_color: string;
@@ -63,6 +64,7 @@ export class CharactersService {
     this.findCharacterQuery = this.apollo.watchQuery({
       query: gql`query character($name: String!) {
         character(name: $name) {
+          id
           name
           height
           mass
@@ -111,7 +113,7 @@ export class CharactersService {
     return result.data.species;
   }
 
-  async deleteCharacter(name: string): Promise<string | undefined> {
+  async deleteCharacter(name: string): Promise<string> {
     const result = await this.apollo
       .mutate<{ deleteCharacter: string }>({
         mutation: gql`
@@ -123,23 +125,6 @@ export class CharactersService {
       })
       .toPromise();
   
-    // Safely handle the result using optional chaining and provide a fallback message if undefined
     return result?.data?.deleteCharacter ?? 'No response from server';
   }
-  
-
-  //  async deleteCharacter(name: string): Promise<string | undefined> {
-  //   const result = await this.apollo
-  //     .mutate({
-  //       mutation: gql`
-  //         mutation DeleteCharacter($name: String!) {
-  //           deleteCharacter(name: $name)
-  //         }
-  //       `,
-  //       variables: { name },
-  //     })
-  //     .toPromise();
-
-  //   return result.data.deleteCharacter;
-  // }
 }

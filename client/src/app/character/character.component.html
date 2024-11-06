@@ -60,12 +60,26 @@
                 <p class="card-text">{{character.gender}}</p>
               </div>
             </div>
-      </div>
+          </div>
+          <div class="row m-3">
+            <div class="col-md-2">
+              <button class="btn btn-danger" (click)="deleteUser(character.name)">
+                <i class="bi bi-trash"></i>
+              Delete</button>
+            </div>
+
+            <div class="col-md-2">
+              <button class="btn btn-warning">
+              <i class="bi bi-pen"></i>Edit</button>
+            </div>
+            <div class="col-md-2">
+              <!-- <button class="btn btn-warning text-light" (click)="editUser(character.id)">Delete</button> -->
+            </div>
+          </div>
     </div>
-    <button class="btn btn-danger" (click)="deleteUser(character.name)">Delete</button>
   </div>
 }
 
 @else {
-  <p>No Data!</p>
+  <p class="text-center mt-3">No Data!</p>
 }

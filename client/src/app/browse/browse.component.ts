@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, WritableSignal, signal } from '@angular/core';
 import { Character, CharactersService } from '../characters.service';
 import { RouterLink } from '@angular/router';
 
@@ -7,40 +7,42 @@ import { RouterLink } from '@angular/router';
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.scss'],
   standalone: true,
-  imports:[RouterLink]
+  imports: [RouterLink]
 })
 export class BrowseComponent implements OnInit {
-  offset: number = 0;
-  count: number = 0;
-  characters: Character[] = [];
+  // Using signals for better reactivity
+  offset: WritableSignal<number> = signal(0);
+  count: WritableSignal<number> = signal(0);
+  characters: WritableSignal<Character[]> = signal([]);
 
-  constructor(private charactersService: CharactersService) {}
+  // Using dependency injection with Angular's `inject`
+  private charactersService = inject(CharactersService);
 
   async ngOnInit(): Promise<void> {
     await this.updateCharacters();
   }
 
   async updateCharacters() {
-    const result = await this.charactersService.getCharacters(this.offset);
-    this.count = result.count;
-    this.characters = result.characters;
+    const result = await this.charactersService.getCharacters(this.offset());
+    this.count.set(result.count);
+    this.characters.set(result.characters);
   }
 
   showPrevious() {
-    return this.offset > 0;
+    return this.offset() > 0;
   }
 
   showNext() {
-    return this.offset + 10 < this.count;
+    return this.offset() + 10 < this.count();
   }
 
   async onPrevious() {
-    this.offset -= 10;
+    this.offset.update((value) => value - 10);
     await this.updateCharacters();
   }
 
   async onNext() {
-    this.offset += 10;
+    this.offset.update((value) => value + 10);
     await this.updateCharacters();
   }
 }
