@@ -38,6 +38,18 @@ export interface Species {
   homeworld: string;
 }
 
+export interface CharacterInput{
+    height: number
+    mass: String
+    hair_color: String
+    skin_color: String
+    eye_color: String
+    birth_year: String
+    gender: String
+    description: String
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -127,4 +139,42 @@ export class CharactersService {
   
     return result?.data?.deleteCharacter ?? 'No response from server';
   }
+
+  async updateCharacter(
+    id: string,
+    updatedFields: CharacterInput
+  ): Promise<{ message: string; character: Character | null }> {
+    const result = await this.apollo
+      .mutate<{ updateCharacter: { message: string; character: Character | null } }>({
+        mutation: gql`
+          mutation UpdateCharacter($id: ID!, $updatedFields: CharacterInput!) {
+            updateCharacter(id: $id, updatedFields: $updatedFields) {
+              message
+              character {
+                id
+                name
+                height
+                mass
+                hair_color
+                skin_color
+                eye_color
+                birth_year
+                gender
+                description
+              }
+            }
+          }
+        `,
+        variables: { id, updatedFields },
+      })
+      .toPromise();
+  
+    return result?.data?.updateCharacter ?? { message: 'No response from server', character: null };
+  }
+  
+  
+
+  
+
+
 }

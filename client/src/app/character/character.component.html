@@ -19,7 +19,14 @@
         </div>
             
         <div class="d-flex m-3 ">
-            <div class="card border-secondary m-2 w-25">
+          <div class="card border-secondary m-2 w-25">
+            <div class="card-header bg-secondary text-light">Height</div>
+            <div class="card-body text-">
+              <p class="card-text">{{character.height}}</p>
+            </div>
+          </div>
+
+          <div class="card border-secondary m-2 w-25">
               <div class="card-header bg-secondary text-light">Mass</div>
               <div class="card-body text-">
                 <p class="card-text">{{character.mass}}</p>
@@ -54,7 +61,7 @@
               </div>
             </div>
 
-            <div class="card border-secondary m-2 w-25">
+            <div class="card border-secondary m-2 w-25 ">
               <div class="card-header bg-secondary text-light">Gender</div>
               <div class="card-body text-secondary">
                 <p class="card-text">{{character.gender}}</p>
@@ -62,14 +69,16 @@
             </div>
           </div>
           <div class="row m-3">
-            <div class="col-md-2">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-3 col-7">
               <button class="btn btn-danger" (click)="deleteUser(character.name)">
                 <i class="bi bi-trash"></i>
               Delete</button>
             </div>
-
-            <div class="col-md-2">
-              <button class="btn btn-warning">
+<!-- (click)="updateUser(character.id)" -->
+            <div class="col-md-3 col-4">
+              <button class="btn btn-warning"  (click)="open(content)" >
               <i class="bi bi-pen"></i>Edit</button>
             </div>
             <div class="col-md-2">
@@ -83,3 +92,51 @@
 @else {
   <p class="text-center mt-3">No Data!</p>
 }
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="characterForm" (ngSubmit)="updateUser(character.id)">
+      <div class="mb-3">
+        <label for="height" class="form-label">Height</label>
+        <input type="number" class="form-control" id="height" formControlName="height" placeholder="{{character.height}}">
+      </div>
+      <div class="mb-3">
+        <label for="mass" class="form-label">Mass</label>
+        <input type="text" class="form-control" id="mass" formControlName="mass" placeholder="{{character.mass}}">
+      </div>
+      <div class="mb-3">
+        <label for="hair_color" class="form-label">Hair Color</label>
+        <input type="text" class="form-control" id="hair_color" formControlName="hair_color" placeholder="{{character.hair_color}}">
+      </div>
+      <div class="mb-3">
+        <label for="skin_color" class="form-label">Skin Color</label>
+        <input type="text" class="form-control" id="skin_color" formControlName="skin_color" placeholder="{{character.skin_color}}">
+      </div>
+      <div class="mb-3">
+        <label for="eye_color" class="form-label">Eye Color</label>
+        <input type="text" class="form-control" id="eye_color" formControlName="eye_color" placeholder="{{character.eye_color}}">
+      </div>
+      <div class="mb-3">
+        <label for="birth_year" class="form-label">Birth Year</label>
+        <input type="text" class="form-control" id="birth_year" formControlName="birth_year" placeholder="{{character.birth_year}}">{{character.birth_year}}
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <input type="text" class="form-control" id="gender" formControlName="gender" placeholder="{{character.gender}}">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" formControlName="description" placeholder="{{character.description}}">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+	</div>
+	<!-- <div class="modal-footer">
+		<button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Save</button>
+	</div> -->
+</ng-template>
