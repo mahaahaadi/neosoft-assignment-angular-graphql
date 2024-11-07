@@ -102,27 +102,27 @@
 		<form [formGroup]="characterForm" (ngSubmit)="updateUser(character.id)">
       <div class="mb-3">
         <label for="height" class="form-label">Height</label>
-        <input type="number" class="form-control" id="height" formControlName="height" placeholder="{{character.height}}">
+        <input type="number" class="form-control" id="height" formControlName="height" placeholder="{{character.height}}" required>
       </div>
       <div class="mb-3">
         <label for="mass" class="form-label">Mass</label>
-        <input type="text" class="form-control" id="mass" formControlName="mass" placeholder="{{character.mass}}">
+        <input type="text" class="form-control" id="mass" formControlName="mass" placeholder="{{character.mass}}" required>
       </div>
       <div class="mb-3">
         <label for="hair_color" class="form-label">Hair Color</label>
-        <input type="text" class="form-control" id="hair_color" formControlName="hair_color" placeholder="{{character.hair_color}}">
+        <input type="text" class="form-control" id="hair_color" formControlName="hair_color" placeholder="{{character.hair_color}}" required>
       </div>
       <div class="mb-3">
         <label for="skin_color" class="form-label">Skin Color</label>
-        <input type="text" class="form-control" id="skin_color" formControlName="skin_color" placeholder="{{character.skin_color}}">
+        <input type="text" class="form-control" id="skin_color" formControlName="skin_color" placeholder="{{character.skin_color}}" required>
       </div>
       <div class="mb-3">
         <label for="eye_color" class="form-label">Eye Color</label>
-        <input type="text" class="form-control" id="eye_color" formControlName="eye_color" placeholder="{{character.eye_color}}">
+        <input type="text" class="form-control" id="eye_color" formControlName="eye_color" placeholder="{{character.eye_color}}" required>
       </div>
       <div class="mb-3">
         <label for="birth_year" class="form-label">Birth Year</label>
-        <input type="text" class="form-control" id="birth_year" formControlName="birth_year" placeholder="{{character.birth_year}}">{{character.birth_year}}
+        <input type="text" class="form-control" id="birth_year" formControlName="birth_year" placeholder="{{character.birth_year}}" required>
       </div>
       <div class="mb-3">
         <label for="gender" class="form-label">Gender</label>
